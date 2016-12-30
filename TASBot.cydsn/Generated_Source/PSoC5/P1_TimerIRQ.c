@@ -175,8 +175,6 @@ CY_ISR(P1_TimerIRQ_Interrupt)
             data[1] = input[1][input_ptr]; 
             data[2] = input[2][input_ptr];         
             data[3] = input[3][input_ptr]; 
-            data[4] = input[4][input_ptr]; 
-            data[5] = input[5][input_ptr]; 
             
             latches++;
             sent = 1;

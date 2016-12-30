@@ -2,7 +2,7 @@
 --	Conversion of TASBot.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Dec 30 11:21:36 2016
+--	Fri Dec 30 13:39:41 2016
 --
 
 USE cypress.cypress.all;

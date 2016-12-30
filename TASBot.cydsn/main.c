@@ -8,8 +8,8 @@
 
 volatile int sent = 0;
 volatile int playing = 0;
-volatile uint16 data[6] = {0, 0, 0, 0, 0, 0};
-volatile uint16 input[6][INPUT_BUF_SIZE];
+volatile uint16 data[4] = {0, 0, 0, 0};
+volatile uint16 input[4][INPUT_BUF_SIZE];
 volatile int input_ptr = 0;
 volatile int buf_ptr = 0;
 volatile int count = 0;
@@ -24,7 +24,6 @@ volatile int disable_timer = 0;
 volatile int bytes = 0;
 volatile int window_off = -1;
 volatile int latches = 0;
-volatile int async = 0;
 volatile int autolatch = 0;
 volatile int autofilled = 0;
 volatile int autobits = 16;
@@ -57,7 +56,6 @@ int main()
     playing = 0;
     count = 0;
     latches = 0;
-    async = 0;
     blocksize = 0;
     autofilled = 0;
     autolatch = 0;
@@ -137,7 +135,6 @@ int main()
                         playing = 0;
                         count = 0;
                         latches = 0;
-                        async = 0;
                         blocksize = 0;
                         autofilled = 0;
                         autolatch = 0;
@@ -221,7 +218,7 @@ int main()
                                             tmp = buffer[j+(p*(databits*lines))+(d*databits)] << 8;
                                         }
                                         
-                                        input[(p*3) + d][buf_ptr] = tmp;
+                                        input[(p*2) + d][buf_ptr] = tmp;
                                     }
                                 }
             					buf_ptr = (buf_ptr+1) % INPUT_BUF_SIZE;
@@ -234,13 +231,11 @@ int main()
                         data[1] = input[1][0];
                         data[2] = input[2][0];
                         data[3] = input[3][0];
-                        data[4] = input[4][0];
-                        data[5] = input[5][0];
 
                         ConsolePort_1_RegD0_WriteRegValue(data[0]);
                         ConsolePort_1_RegD1_WriteRegValue(data[1]);
-                        ConsolePort_2_RegD0_WriteRegValue(data[3]);
-                        ConsolePort_2_RegD1_WriteRegValue(data[4]);
+                        ConsolePort_2_RegD0_WriteRegValue(data[2]);
+                        ConsolePort_2_RegD1_WriteRegValue(data[3]);
                         
                         timer_ready = 1;
                         ready = 1;
@@ -279,7 +274,7 @@ int main()
                                     {
                                         tmp = buffer[j+(p*(databits*lines))+(d*databits)] << 8;
                                     }
-                                    input[(p*3) + d][buf_ptr] = tmp;
+                                    input[(p*2) + d][buf_ptr] = tmp;
                                     
                                 }
                             }

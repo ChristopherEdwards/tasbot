@@ -6,7 +6,7 @@
 
 #Build Date:         Apr 29 2016 09:00:55
 
-#File Generated:     Dec 30 2016 11:21:37
+#File Generated:     Dec 30 2016 13:39:43
 
 #Purpose:            
 
@@ -118,7 +118,7 @@ Clock: VisClock(routed)     | Frequency: N/A       | Target:   0.0 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 3.8 (sec)
+D2088: Phase 7, elapsed time : 3.2 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	28
@@ -170,5 +170,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 5.2 sec.
+I2076: Total run-time: 4.5 sec.
 
