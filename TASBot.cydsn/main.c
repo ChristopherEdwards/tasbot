@@ -45,13 +45,11 @@ int main()
     /* Start registers and timers */
     ConsolePort_1_RegD0_Start();
     ConsolePort_1_RegD1_Start();
-    ConsolePort_1_RegD2_Start();
     ConsolePort_1_WinTimer_Start();
     ConsolePort_1_ClockTimer_Start();
 
     ConsolePort_2_RegD0_Start();
     ConsolePort_2_RegD1_Start();
-    ConsolePort_2_RegD2_Start();
     ConsolePort_2_ClockTimer_Start();    
 
     input_ptr = 0;
@@ -94,10 +92,8 @@ int main()
     
     ConsolePort_1_RegD0_WriteRegValue(0xFFFF);
     ConsolePort_1_RegD1_WriteRegValue(0xFFFF);
-    ConsolePort_1_RegD2_WriteRegValue(0xFFFF);
     ConsolePort_2_RegD0_WriteRegValue(0xFFFF);
     ConsolePort_2_RegD1_WriteRegValue(0xFFFF);
-    ConsolePort_2_RegD2_WriteRegValue(0xFFFF);
     
     for(;;)    
     {      
@@ -176,10 +172,8 @@ int main()
                         
                         ConsolePort_1_RegD0_WriteRegValue(0xFFFF);
                         ConsolePort_1_RegD1_WriteRegValue(0xFFFF);
-                        ConsolePort_1_RegD2_WriteRegValue(0xFFFF);
                         ConsolePort_2_RegD0_WriteRegValue(0xFFFF);
                         ConsolePort_2_RegD1_WriteRegValue(0xFFFF);
-                        ConsolePort_2_RegD2_WriteRegValue(0xFFFF);
                         
                         break;
                     }
@@ -245,10 +239,8 @@ int main()
 
                         ConsolePort_1_RegD0_WriteRegValue(data[0]);
                         ConsolePort_1_RegD1_WriteRegValue(data[1]);
-                        ConsolePort_1_RegD2_WriteRegValue(data[2]);
                         ConsolePort_2_RegD0_WriteRegValue(data[3]);
                         ConsolePort_2_RegD1_WriteRegValue(data[4]);
-                        ConsolePort_2_RegD2_WriteRegValue(data[5]);
                         
                         timer_ready = 1;
                         ready = 1;

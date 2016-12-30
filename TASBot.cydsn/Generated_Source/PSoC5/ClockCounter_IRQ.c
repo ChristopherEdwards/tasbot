@@ -168,11 +168,9 @@ CY_ISR(ClockCounter_IRQ_Interrupt)
 
         ConsolePort_1_RegD0_WriteRegValue(data[0]);
         ConsolePort_1_RegD1_WriteRegValue(data[1]);
-        ConsolePort_1_RegD2_WriteRegValue(data[2]);
 
         ConsolePort_2_RegD0_WriteRegValue(data[3]);
         ConsolePort_2_RegD1_WriteRegValue(data[4]);
-        ConsolePort_2_RegD2_WriteRegValue(data[5]);
       
         if(playing)
         {
