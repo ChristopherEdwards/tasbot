@@ -13,31 +13,29 @@ I1206: Completed Reading of file TASBot.sdc
 I1204: Reading architecture from file E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc5/psoc5lp/route_arch-rrg.cydata
 I1206: Completed Reading of file E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\dev/psoc5/psoc5lp/route_arch-rrg.cydata
 I1209: Started routing
-I1223: Total Nets : 345 
-I1212: Iteration  1 :   217 unrouted : 1 seconds
-I1212: Iteration  2 :    84 unrouted : 1 seconds
-I1212: Iteration  3 :    59 unrouted : 1 seconds
-I1212: Iteration  4 :    25 unrouted : 0 seconds
-I1212: Iteration  5 :    22 unrouted : 0 seconds
-I1212: Iteration  6 :    20 unrouted : 1 seconds
-I1212: Iteration  7 :    16 unrouted : 0 seconds
-I1212: Iteration  8 :    12 unrouted : 0 seconds
-I1212: Iteration  9 :     7 unrouted : 0 seconds
-I1212: Iteration 10 :     9 unrouted : 0 seconds
-I1212: Iteration 11 :     9 unrouted : 0 seconds
-I1212: Iteration 12 :     9 unrouted : 0 seconds
-I1212: Iteration 13 :     7 unrouted : 0 seconds
-I1212: Iteration 14 :     6 unrouted : 0 seconds
-I1212: Iteration 15 :     5 unrouted : 0 seconds
+I1223: Total Nets : 346 
+I1212: Iteration  1 :   196 unrouted : 1 seconds
+I1212: Iteration  2 :    99 unrouted : 2 seconds
+I1212: Iteration  3 :    74 unrouted : 0 seconds
+I1212: Iteration  4 :    40 unrouted : 1 seconds
+I1212: Iteration  5 :    27 unrouted : 0 seconds
+I1212: Iteration  6 :    24 unrouted : 0 seconds
+I1212: Iteration  7 :    13 unrouted : 0 seconds
+I1212: Iteration  8 :    12 unrouted : 1 seconds
+I1212: Iteration  9 :     8 unrouted : 0 seconds
+I1212: Iteration 10 :     6 unrouted : 0 seconds
+I1212: Iteration 11 :     6 unrouted : 0 seconds
+I1212: Iteration 12 :     6 unrouted : 0 seconds
+I1212: Iteration 13 :     6 unrouted : 0 seconds
+I1212: Iteration 14 :    10 unrouted : 0 seconds
+I1212: Iteration 15 :     4 unrouted : 0 seconds
 I1212: Iteration 16 :     4 unrouted : 0 seconds
-I1212: Iteration 17 :     2 unrouted : 0 seconds
-I1212: Iteration 18 :     2 unrouted : 0 seconds
+I1212: Iteration 17 :     4 unrouted : 0 seconds
+I1212: Iteration 18 :     6 unrouted : 0 seconds
 I1212: Iteration 19 :     2 unrouted : 0 seconds
 I1212: Iteration 20 :     2 unrouted : 0 seconds
 I1212: Iteration 21 :     2 unrouted : 0 seconds
-I1212: Iteration 22 :     2 unrouted : 0 seconds
-I1212: Iteration 23 :     2 unrouted : 0 seconds
-I1212: Iteration 24 :     0 unrouted : 0 seconds
+I1212: Iteration 22 :     0 unrouted : 0 seconds
 I1215: Routing is successful
 I1207: Completed routing
 I1210: Writing routes

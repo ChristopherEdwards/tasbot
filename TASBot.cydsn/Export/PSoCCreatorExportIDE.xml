@@ -233,6 +233,24 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ClockCountSel.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ClockCountSel.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ClockCountSel_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d0_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d0_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d0_oe.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d1_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d1_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d1_oe.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d2_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d2_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p1_d2_oe.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d0_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d0_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d0_oe.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d1_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d1_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d1_oe.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d2_oe_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d2_oe.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\p2_d2_oe.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\Export\ARM_GCC_Generic">

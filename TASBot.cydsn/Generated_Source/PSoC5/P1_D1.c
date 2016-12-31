@@ -90,7 +90,6 @@ void P1_D1_Write(uint8 value)
 void P1_D1_SetDriveMode(uint8 mode)
 {
 	CyPins_SetPinDriveMode(P1_D1_0, mode);
-	CyPins_SetPinDriveMode(P1_D1_1, mode);
 }
 
 
@@ -190,10 +189,6 @@ uint8 P1_D1_ReadDataReg(void)
 		if((position & P1_D1_0_INTR) != 0u) 
 		{ 
 			 P1_D1_0_INTTYPE_REG = (uint8)mode; 
-		} 
-		if((position & P1_D1_1_INTR) != 0u) 
-		{ 
-			 P1_D1_1_INTTYPE_REG = (uint8)mode; 
 		}
     }
     

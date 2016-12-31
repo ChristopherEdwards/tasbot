@@ -190,14 +190,57 @@ CY_ISR(P1_IRQ_Interrupt)
 
             if(!use_timer)
             {
-                input_ptr = (input_ptr+1)%INPUT_BUF_SIZE;
-                data[0] = input[0][input_ptr]; 
-                data[1] = input[1][input_ptr]; 
+/*                // based on latch count, are we now in cmd mode?
+                if (cmd_mode_start != -1 && latches >= cmd_mode_start)
+                {
+                    // Every 300 bytes starting at cmd_mode_start, check if there is enough data in the buffer to send
+                    if ((latches - cmd_mode_start) % 300 == 0)
+                    {
+                        // If we just successfully sent a command
+                        if (latches > cmd_mode_start && !cmd_mode_no_data)
+                        {
+                            // Send a command to the PC
+                            cmd_mode_cmd_sent = 1;
+                        }
+                        
+                        if (((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1)) >= 300)
+                        {
+                            cmd_mode_no_data = 0;
+                        }
+                        else
+                        {
+                            // check if there is data available
+                            // if not
+                            cmd_mode_no_data = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    cmd_mode_no_data = 0;   
+                }
+                
+                if (cmd_mode_no_data)
+                {
+                    data[0] = 0xFFFF;
+                    data[1] = 0xFFFF;
 
-                data[2] = input[2][input_ptr]; 
-                data[3] = input[3][input_ptr]; 
+                    data[2] = 0xFFFF;
+                    data[3] = 0xFFFF;
+                }
+                else
+                {*/
+                    input_ptr = (input_ptr+1)%INPUT_BUF_SIZE;
+                    data[0] = input[0][input_ptr]; 
+                    data[1] = input[1][input_ptr]; 
+
+                    data[2] = input[2][input_ptr]; 
+                    data[3] = input[3][input_ptr]; 
+                /*}*/
+                
                 
                 latches++;
+                
                 sent = 1;
             }
             

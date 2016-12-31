@@ -28,6 +28,10 @@ volatile int autolatch = 0;
 volatile int autofilled = 0;
 volatile int autobits = 16;
 
+volatile int cmd_mode_start = -1;
+volatile int cmd_mode_no_data = 0;
+volatile int cmd_mode_cmd_sent = 0;
+
 int main()
 {
     uint8 buffer[USBUART_BUFFER_SIZE];
@@ -79,7 +83,11 @@ int main()
     use_timer = 0;
     timer_ready = 0;
     window_off = -1;
-
+    
+    cmd_mode_start = -1;
+    cmd_mode_no_data = 0;
+    cmd_mode_cmd_sent = 0;
+    
     for(i = 0; i < INPUT_BUF_SIZE; i++)
     {
         for(j = 0; j < 6; j++)
@@ -96,16 +104,28 @@ int main()
     for(;;)    
     {      
 
-        if(playing && request == 0)
+        if(playing)
         {
-            i = (INPUT_BUF_SIZE - 1) - ((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1));
-			if(i != (INPUT_BUF_SIZE - 1) && i > 65)
-			{
+            if (request == 0)
+            {
+                i = (INPUT_BUF_SIZE - 1) - ((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1));
+    			if(i != (INPUT_BUF_SIZE - 1) && i > 65)
+    			{
+                    if (0u != USBUART_GetConfiguration())
+                    {
+                        while (0u == USBUART_CDCIsReady()) { }
+                        USBUART_PutChar(0xF);
+                        request = 1;
+                    }
+                }
+            }
+            else if (cmd_mode_cmd_sent)
+            {
                 if (0u != USBUART_GetConfiguration())
                 {
                     while (0u == USBUART_CDCIsReady()) { }
-                    USBUART_PutChar(0xF);
-                    request = 1;
+                    USBUART_PutChar(0xD);
+                    cmd_mode_cmd_sent = 0;
                 }
             }
         }           
@@ -158,10 +178,14 @@ int main()
                         use_timer = 0;
                         timer_ready= 0;
                         window_off = -1;
+                        
+                        cmd_mode_start = -1;
+                        cmd_mode_no_data = 0;
+                        cmd_mode_cmd_sent = 0;
 
                         for(i = 0; i < INPUT_BUF_SIZE; i++)
                         {
-                            for(j = 0; j < 6; j++)
+                            for(j = 0; j < 4; j++)
                             {
                                 input[j][i] = 0;
                             }
@@ -326,6 +350,17 @@ int main()
                         autobits = buffer[1];
                         ClockCounter_WritePeriod(buffer[1]);
                         break;
+                    }
+                    case 0xD0:
+                    {
+                        cmd_mode_start = (buffer[1]<<8) + (buffer[2]&0xFF);
+                        break;
+                    }
+                    case 0xD1:
+                    {
+                        // Resync
+                        cmd_mode_no_data = 1;
+                        input_ptr = buf_ptr;
                     }
                     case 0xFF:
                     {

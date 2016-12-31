@@ -131,6 +131,24 @@
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ClockCountSel.h" value="HEADER;;;;;ClockCountSel" />
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ClockCountSel.c" value="SOURCE_C;CortexM3;;;;ClockCountSel" />
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ClockCountSel_PM.c" value="SOURCE_C;CortexM3;;;;ClockCountSel" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d0_oe_aliases.h" value="HEADER;;;;;p1_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d0_oe.c" value="SOURCE_C;CortexM3;;;;p1_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d0_oe.h" value="HEADER;;;;;p1_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d1_oe_aliases.h" value="HEADER;;;;;p1_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d1_oe.c" value="SOURCE_C;CortexM3;;;;p1_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d1_oe.h" value="HEADER;;;;;p1_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d2_oe_aliases.h" value="HEADER;;;;;p1_d2_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d2_oe.c" value="SOURCE_C;CortexM3;;;;p1_d2_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p1_d2_oe.h" value="HEADER;;;;;p1_d2_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d0_oe_aliases.h" value="HEADER;;;;;p2_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d0_oe.c" value="SOURCE_C;CortexM3;;;;p2_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d0_oe.h" value="HEADER;;;;;p2_d0_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d1_oe_aliases.h" value="HEADER;;;;;p2_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d1_oe.c" value="SOURCE_C;CortexM3;;;;p2_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d1_oe.h" value="HEADER;;;;;p2_d1_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d2_oe_aliases.h" value="HEADER;;;;;p2_d2_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d2_oe.c" value="SOURCE_C;CortexM3;;;;p2_d2_oe" />
+  <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\p2_d2_oe.h" value="HEADER;;;;;p2_d2_oe" />
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ConsolePort_2_Clock_1.c" value="SOURCE_C;CortexM3;;;;ConsolePort_2_Clock_1" />
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ConsolePort_2_Clock_1.h" value="HEADER;;;;;ConsolePort_2_Clock_1" />
   <file name="E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\codegentemp\ConsolePort_2_RegD0.c" value="SOURCE_C;CortexM3;;;;ConsolePort_2_RegD0" />
