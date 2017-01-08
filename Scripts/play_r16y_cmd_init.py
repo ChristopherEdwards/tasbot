@@ -24,7 +24,7 @@ else:
 	sys.exit()
 
 f = None	
-filename = sys.argv[1]
+filename = sys.argv[2]
 if filename[-3:].lower() == "bz2":
 	f = bz2.BZ2File(filename, "r")
 else:	
