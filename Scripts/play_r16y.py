@@ -3,12 +3,16 @@ import serial, sys, time, os, bz2, gc
 # disable gc
 gc.disable()
 
-# give us high priority
-#p = psutil.Process(os.getpid())
-#p.nice(psutil.REALTIME_PRIORITY_CLASS)
+if len(sys.argv) < 3:
+  sys.stderr.write('Usage: ' + sys.argv[0] + ' <interface> <replayfile>\n\n')
+  sys.exit(0)
 	
+if not os.path.exists(sys.argv[2]):
+  sys.stderr.write('Error: "' + sys.argv[2] + '" not found\n')
+  sys.exit(1)
+  
 # connect to device
-ser = serial.Serial('/dev/ttyACM0', 2000000, timeout=0.1)
+ser = serial.Serial(sys.argv[1], 2000000, timeout=0.1)
 
 # send "ping" command to make sure device is there
 ser.write(b'\xFF')
@@ -20,7 +24,7 @@ else:
 	sys.exit()
 
 f = None	
-filename = sys.argv[1]
+filename = sys.argv[2]
 if filename[-3:].lower() == "bz2":
 	f = bz2.BZ2File(filename, "r")
 else:	
