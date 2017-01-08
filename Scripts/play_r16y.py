@@ -1,14 +1,14 @@
-import serial, sys, time, psutil, os, bz2, gc
+import serial, sys, time, os, bz2, gc
 
 # disable gc
 gc.disable()
 
 # give us high priority
-p = psutil.Process(os.getpid())
-p.nice(psutil.REALTIME_PRIORITY_CLASS)
+#p = psutil.Process(os.getpid())
+#p.nice(psutil.REALTIME_PRIORITY_CLASS)
 	
 # connect to device
-ser = serial.Serial('COM8', 2000000, timeout=0.1)
+ser = serial.Serial('/dev/ttyACM0', 2000000, timeout=0.1)
 
 # send "ping" command to make sure device is there
 ser.write(b'\xFF')
@@ -50,7 +50,7 @@ print("--- Sending start command to device")
 ser.write(b'\x01\x02\x02\x02\x00\x00\x00') # command 1 (play), 16-bits, 2 port, 2 datalines, sync, no window 1, no window 2
 
 latches = 0
-extra = 0
+extra = 1
 skip = 0
 
 for n in range(0, skip):
