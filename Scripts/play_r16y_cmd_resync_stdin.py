@@ -10,7 +10,7 @@ if (sys.argv[0].startswith("python")):
   argv_offset = 1
 
 if len(sys.argv) < (2 + argv_offset):
-  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset = 1 else '') + sys.argv[0 + argv_offset] + ' <interface>\n\n')
+  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset == 1 else '') + sys.argv[0 + argv_offset] + ' <interface>\n\n')
   sys.exit(0)
 	  
 # connect to device

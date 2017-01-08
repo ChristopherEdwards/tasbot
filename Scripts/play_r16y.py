@@ -9,7 +9,7 @@ if (sys.argv[0].startswith("python")):
   argv_offset = 1
 
 if len(sys.argv) < (3 + argv_offset):
-  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset = 1 else '') + sys.argv[0 + argv_offset] + ' <interface> <replayfile>\n\n')
+  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset == 1 else '') + sys.argv[0 + argv_offset] + ' <interface> <replayfile>\n\n')
   sys.exit(0)
 	
 if not os.path.exists(sys.argv[2 + argv_offset]):
