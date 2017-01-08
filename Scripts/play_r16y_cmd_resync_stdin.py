@@ -5,16 +5,16 @@ import serial, sys, time, os, bz2, gc, select
 # disable gc
 gc.disable()
 
-if len(sys.argv) < 3:
-  sys.stderr.write('Usage: ' + sys.argv[0] + ' <interface> <replayfile>\n\n')
-  sys.exit(0)
-	
-if not os.path.exists(sys.argv[2]):
-  sys.stderr.write('Error: "' + sys.argv[2] + '" not found\n')
-  sys.exit(1)
+argv_offset = 0
+if (sys.argv[0].startswith("python")):
+  argv_offset = 1
 
+if len(sys.argv) < (2 + argv_offset):
+  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset = 1 else '') + sys.argv[0 + argv_offset] + ' <interface>\n\n')
+  sys.exit(0)
+	  
 # connect to device
-ser = serial.Serial(sys.argv[1], 2000000, timeout=0.1)
+ser = serial.Serial(sys.argv[1 + argv_offset], 2000000, timeout=0.1)
 
 # open file
 f = sys.stdin.buffer #open(sys.argv[1], "rb")
