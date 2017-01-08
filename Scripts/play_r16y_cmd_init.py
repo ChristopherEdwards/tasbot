@@ -3,8 +3,16 @@ import serial, sys, time, os, bz2, gc
 # disable gc
 gc.disable()
 
+if len(sys.argv) < 3:
+  sys.stderr.write('Usage: ' + sys.argv[0] + ' <interface> <replayfile>\n\n')
+  sys.exit(0)
+	
+if not os.path.exists(sys.argv[2]):
+  sys.stderr.write('Error: "' + sys.argv[2] + '" not found\n')
+  sys.exit(1)
+
 # connect to device
-ser = serial.Serial('/dev/ttyACM1', 2000000, timeout=0.1)
+ser = serial.Serial(sys.argv[1], 2000000, timeout=0.1)
 
 # send "ping" command to make sure device is there
 ser.write(b'\xFF')
