@@ -11,3 +11,5 @@ Backup
 *.cydsn/*.rpt
 *.cydsn/*_timing.html
 *.cydsn/Export
+ComponentUpdateLog.txt
+
