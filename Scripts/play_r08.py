@@ -1,14 +1,28 @@
-import serial, sys, time, psutil, os, bz2, gc
+#!/usr/bin/python3
+import serial, sys, time, os, bz2, gc
 
 # disable gc
 gc.disable()
-	
-# give us high priority
-p = psutil.Process(os.getpid())
-p.nice(psutil.REALTIME_PRIORITY_CLASS)
 
+# disambiguiate commandline arguments
+argv_offset = 0
+
+# determine if we were started with python nameOfScript vs ./nameOfScript
+if (sys.argv[0].startswith("python")):
+  argv_offset = 1
+
+# not enough arguments - print usage
+if len(sys.argv) < (3 + argv_offset):
+  sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset == 1 else '') + sys.argv[0 + argv_offset] + ' <interface> <replayfile>\n\n')
+  sys.exit(0)
+
+# if movie file doesn't exist
+if not os.path.exists(sys.argv[2 + argv_offset]):
+  sys.stderr.write('Error: "' + sys.argv[2 + argv_offset] + '" not found\n')
+  sys.exit(1)
+  
 # connect to device
-ser = serial.Serial('COM3', 2000000, timeout=0.1)
+ser = serial.Serial(sys.argv[1 + argv_offset], 2000000, timeout=0.1)
 
 # send "ping" command to make sure device is there
 ser.write(b'\xFF')

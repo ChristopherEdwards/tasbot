@@ -4,14 +4,19 @@ import serial, sys, time, os, bz2, gc
 # disable gc
 gc.disable()
 
+# disambiguiate commandline arguments
 argv_offset = 0
+
+# determine if we were started with python nameOfScript vs ./nameOfScript
 if (sys.argv[0].startswith("python")):
   argv_offset = 1
 
+# not enough arguments - print usage
 if len(sys.argv) < (3 + argv_offset):
   sys.stderr.write('Usage: ' + (sys.argv[0] if argv_offset == 1 else '') + sys.argv[0 + argv_offset] + ' <interface> <replayfile>\n\n')
   sys.exit(0)
-	
+
+# if movie file doesn't exist
 if not os.path.exists(sys.argv[2 + argv_offset]):
   sys.stderr.write('Error: "' + sys.argv[2 + argv_offset] + '" not found\n')
   sys.exit(1)
