@@ -41,14 +41,14 @@ ser.write(b'\x00')
 time.sleep(0.1)
 
 # set window size
-#ser.write(bytes([0xA0, 0x40, 0x00]))  # 16384 = ~0.68ms
+ser.write(bytes([0xA0, 0x40, 0x00]))  # 16384 = ~0.68ms
 
 # set window off at
-#ser.write(bytes([0xA1, 0x08, 0x49])) # 2122
+ser.write(bytes([0xA1, 0x08, 0x4A])) # 2121
 
 # set clock filter timers (DPCM fix)
-#ser.write(bytes([0xA4, 128])) # Port 1 timer (128 = 5us)
-#ser.write(bytes([0xB4, 128])) # Port 2 timer (128 = 5us)
+ser.write(bytes([0xA4, 128])) # Port 1 timer (128 = 5us)
+ser.write(bytes([0xB4, 128])) # Port 2 timer (128 = 5us)
 
 # autolatcher (automatically triggers a latch every n'th clock of the selected controller)
 #ser.write(bytes([0xC0, 1, 1]))  # set autolatch on controller port 2
@@ -56,7 +56,7 @@ time.sleep(0.1)
 
 # start run
 print("--- Sending start command to device")
-ser.write(b'\x01\x02\x02\x02\x00\x00\x00') # command 1 (play), 16-bits, 2 port, 2 datalines, sync, no window 1, no window 2
+ser.write(b'\x01\x02\x02\x02\x01') # command 1 (play), 16-bits, 2 port, 2 datalines, sync, no window 1, no window 2
 
 latches = 0
 extra = 1
@@ -68,6 +68,10 @@ for n in range(0, skip):
 cmd = None
 data = None
 inputs = None
+
+# set to True to turn off DPCM fix at a specific frame
+switch = True
+switch_at = 16800
 
 print("--- Starting read loop")
 while True:
@@ -93,5 +97,11 @@ while True:
 			ser.write(bytes([0x0F] + data))
 		
 		latches = latches + 7			
+
+		if latches > switch_at and switch == True:
+			ser.write(bytes([0xA4, 2])) #
+			ser.write(bytes([0xB4, 2])) # switch off DPCM fix on both ports
+			switch = False
+
 		if latches % 60 == 0:
 			print('*** Latches: [%d] - Data: [%x]' % (latches, data[0]))

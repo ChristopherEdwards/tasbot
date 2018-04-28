@@ -1,5 +1,5 @@
-C:\Users\Thomas\Documents\PSoC Creator\TASBot\TASBot.cydsn\TASBot.cyprj|b61a6473-2f72-4682-880f-5ff064131e12
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|62e51e31-4ba4-4005-8242-09f267016bf9
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|b08e1f83-5a96-49bc-a614-6b877db08967
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|58378a7c-48ca-45a4-b9d1-f68889b9a3e0
-C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1037cee9-4b2c-4124-b14d-d1454a48ed69
+E:\Downloads\TASBot\tasbot_gh\TASBot.cydsn\TASBot.cyprj|47567ecc-cb3d-4f9a-9cdc-258025e8e293
+E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a55ab3bd-d4b8-44d7-b888-a633b7f0a6e9
+E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|e36e8308-2775-4101-94d4-390d82a5ab2f
+E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|522f50c7-7214-4b92-92cb-fd6d9bee6def
+E:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ce4729ae-caaf-46ba-b8c3-23c49097b300

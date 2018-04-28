@@ -8,8 +8,8 @@
 
 volatile int sent = 0;
 volatile int playing = 0;
-volatile uint16 data[6] = {0, 0, 0, 0, 0, 0};
-volatile uint16 input[6][INPUT_BUF_SIZE];
+volatile uint16 data[4] = {0, 0, 0, 0};
+volatile uint16 input[4][INPUT_BUF_SIZE];
 volatile int input_ptr = 0;
 volatile int buf_ptr = 0;
 volatile int count = 0;
@@ -24,10 +24,13 @@ volatile int disable_timer = 0;
 volatile int bytes = 0;
 volatile int window_off = -1;
 volatile int latches = 0;
-volatile int async = 0;
 volatile int autolatch = 0;
 volatile int autofilled = 0;
 volatile int autobits = 16;
+
+volatile int cmd_mode_start = -1;
+volatile int cmd_mode_no_data = 0;
+volatile int cmd_mode_cmd_sent = 0;
 
 int main()
 {
@@ -45,13 +48,11 @@ int main()
     /* Start registers and timers */
     ConsolePort_1_RegD0_Start();
     ConsolePort_1_RegD1_Start();
-    ConsolePort_1_RegD2_Start();
     ConsolePort_1_WinTimer_Start();
     ConsolePort_1_ClockTimer_Start();
 
     ConsolePort_2_RegD0_Start();
     ConsolePort_2_RegD1_Start();
-    ConsolePort_2_RegD2_Start();
     ConsolePort_2_ClockTimer_Start();    
 
     input_ptr = 0;
@@ -59,7 +60,6 @@ int main()
     playing = 0;
     count = 0;
     latches = 0;
-    async = 0;
     blocksize = 0;
     autofilled = 0;
     autolatch = 0;
@@ -83,7 +83,11 @@ int main()
     use_timer = 0;
     timer_ready = 0;
     window_off = -1;
-
+    
+    cmd_mode_start = -1;
+    cmd_mode_no_data = 0;
+    cmd_mode_cmd_sent = 0;
+    
     for(i = 0; i < INPUT_BUF_SIZE; i++)
     {
         for(j = 0; j < 6; j++)
@@ -94,24 +98,34 @@ int main()
     
     ConsolePort_1_RegD0_WriteRegValue(0xFFFF);
     ConsolePort_1_RegD1_WriteRegValue(0xFFFF);
-    ConsolePort_1_RegD2_WriteRegValue(0xFFFF);
     ConsolePort_2_RegD0_WriteRegValue(0xFFFF);
     ConsolePort_2_RegD1_WriteRegValue(0xFFFF);
-    ConsolePort_2_RegD2_WriteRegValue(0xFFFF);
     
     for(;;)    
     {      
 
-        if(playing && request == 0)
+        if(playing)
         {
-            i = (INPUT_BUF_SIZE - 1) - ((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1));
-			if(i != (INPUT_BUF_SIZE - 1) && i > 65)
-			{
+            if (request == 0)
+            {
+                i = (INPUT_BUF_SIZE - 1) - ((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1));
+    			if(i != (INPUT_BUF_SIZE - 1) && i > 65)
+    			{
+                    if (0u != USBUART_GetConfiguration())
+                    {
+                        while (0u == USBUART_CDCIsReady()) { }
+                        USBUART_PutChar(0xF);
+                        request = 1;
+                    }
+                }
+            }
+            else if (cmd_mode_cmd_sent)
+            {
                 if (0u != USBUART_GetConfiguration())
                 {
                     while (0u == USBUART_CDCIsReady()) { }
-                    USBUART_PutChar(0xF);
-                    request = 1;
+                    USBUART_PutChar(0xD);
+                    cmd_mode_cmd_sent = 0;
                 }
             }
         }           
@@ -141,7 +155,6 @@ int main()
                         playing = 0;
                         count = 0;
                         latches = 0;
-                        async = 0;
                         blocksize = 0;
                         autofilled = 0;
                         autolatch = 0;
@@ -165,10 +178,14 @@ int main()
                         use_timer = 0;
                         timer_ready= 0;
                         window_off = -1;
+                        
+                        cmd_mode_start = -1;
+                        cmd_mode_no_data = 0;
+                        cmd_mode_cmd_sent = 0;
 
                         for(i = 0; i < INPUT_BUF_SIZE; i++)
                         {
-                            for(j = 0; j < 6; j++)
+                            for(j = 0; j < 4; j++)
                             {
                                 input[j][i] = 0;
                             }
@@ -176,10 +193,8 @@ int main()
                         
                         ConsolePort_1_RegD0_WriteRegValue(0xFFFF);
                         ConsolePort_1_RegD1_WriteRegValue(0xFFFF);
-                        ConsolePort_1_RegD2_WriteRegValue(0xFFFF);
                         ConsolePort_2_RegD0_WriteRegValue(0xFFFF);
                         ConsolePort_2_RegD1_WriteRegValue(0xFFFF);
-                        ConsolePort_2_RegD2_WriteRegValue(0xFFFF);
                         
                         break;
                     }
@@ -227,7 +242,7 @@ int main()
                                             tmp = buffer[j+(p*(databits*lines))+(d*databits)] << 8;
                                         }
                                         
-                                        input[(p*3) + d][buf_ptr] = tmp;
+                                        input[(p*2) + d][buf_ptr] = tmp;
                                     }
                                 }
             					buf_ptr = (buf_ptr+1) % INPUT_BUF_SIZE;
@@ -240,15 +255,11 @@ int main()
                         data[1] = input[1][0];
                         data[2] = input[2][0];
                         data[3] = input[3][0];
-                        data[4] = input[4][0];
-                        data[5] = input[5][0];
 
                         ConsolePort_1_RegD0_WriteRegValue(data[0]);
                         ConsolePort_1_RegD1_WriteRegValue(data[1]);
-                        ConsolePort_1_RegD2_WriteRegValue(data[2]);
-                        ConsolePort_2_RegD0_WriteRegValue(data[3]);
-                        ConsolePort_2_RegD1_WriteRegValue(data[4]);
-                        ConsolePort_2_RegD2_WriteRegValue(data[5]);
+                        ConsolePort_2_RegD0_WriteRegValue(data[2]);
+                        ConsolePort_2_RegD1_WriteRegValue(data[3]);
                         
                         timer_ready = 1;
                         ready = 1;
@@ -287,7 +298,7 @@ int main()
                                     {
                                         tmp = buffer[j+(p*(databits*lines))+(d*databits)] << 8;
                                     }
-                                    input[(p*3) + d][buf_ptr] = tmp;
+                                    input[(p*2) + d][buf_ptr] = tmp;
                                     
                                 }
                             }
@@ -339,6 +350,17 @@ int main()
                         autobits = buffer[1];
                         ClockCounter_WritePeriod(buffer[1]);
                         break;
+                    }
+                    case 0xD0:
+                    {
+                        cmd_mode_start = (buffer[1]<<8) + (buffer[2]&0xFF);
+                        break;
+                    }
+                    case 0xD1:
+                    {
+                        // Resync
+                        cmd_mode_no_data = 1;
+                        input_ptr = buf_ptr;
                     }
                     case 0xFF:
                     {

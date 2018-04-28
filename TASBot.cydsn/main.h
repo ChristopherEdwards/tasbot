@@ -11,14 +11,14 @@
 */
 #include <project.h>
 
-#define INPUT_BUF_SIZE 2048
+#define INPUT_BUF_SIZE 4096
 
 volatile int sent;
 volatile int playing;
 volatile int input_ptr;
 volatile int buf_ptr;
-volatile uint16 data[6];
-volatile uint16 input[6][INPUT_BUF_SIZE];
+volatile uint16 data[4];
+volatile uint16 input[4][INPUT_BUF_SIZE];
 volatile int ready;
 volatile int timer_ready;
 volatile int use_timer;
@@ -29,9 +29,12 @@ volatile int latches;
 volatile int ports;
 volatile int lines;
 volatile int request;
-volatile int async;
 volatile int autolatch;
 volatile int autofilled;
 volatile int autobits;
+
+volatile int cmd_mode_start;
+volatile int cmd_mode_no_data;
+volatile int cmd_mode_cmd_sent;
 
 /* [] END OF FILE */

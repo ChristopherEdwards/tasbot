@@ -168,11 +168,9 @@ CY_ISR(ClockCounter_IRQ_Interrupt)
 
         ConsolePort_1_RegD0_WriteRegValue(data[0]);
         ConsolePort_1_RegD1_WriteRegValue(data[1]);
-        ConsolePort_1_RegD2_WriteRegValue(data[2]);
 
-        ConsolePort_2_RegD0_WriteRegValue(data[3]);
-        ConsolePort_2_RegD1_WriteRegValue(data[4]);
-        ConsolePort_2_RegD2_WriteRegValue(data[5]);
+        ConsolePort_2_RegD0_WriteRegValue(data[2]);
+        ConsolePort_2_RegD1_WriteRegValue(data[3]);
       
         if(playing)
         {
@@ -182,27 +180,65 @@ CY_ISR(ClockCounter_IRQ_Interrupt)
             Vis_L_1_Write(data[1] & 0xFF);
             Vis_H_1_Write(data[1] >> 8);
 
-            Vis_L_2_Write(data[3] & 0xFF);
-            Vis_H_2_Write(data[3] >> 8);
+            Vis_L_2_Write(data[2] & 0xFF);
+            Vis_H_2_Write(data[2] >> 8);
 
-            Vis_L_3_Write(data[4] & 0xFF);
-            Vis_H_3_Write(data[4] >> 8);
+            Vis_L_3_Write(data[3] & 0xFF);
+            Vis_H_3_Write(data[3] >> 8);
 
-            if(!use_timer[0])
+            if(!use_timer)
             {
-                input_ptr[0] = (input_ptr[0]+1)%INPUT_BUF_SIZE;
-                data[0] = input[0][input_ptr[0]]; 
-                data[1] = input[1][input_ptr[0]]; 
-                data[2] = input[2][input_ptr[0]]; 
-
-                if(!async)
+                // based on latch count, are we now in cmd mode?
+                if (cmd_mode_start != -1 && latches >= cmd_mode_start)
                 {
-                    data[3] = input[3][input_ptr[0]]; 
-                    data[4] = input[4][input_ptr[0]]; 
-                    data[5] = input[5][input_ptr[0]]; 
+                    // Every 300 bytes starting at cmd_mode_start, check if there is enough data in the buffer to send
+                    if ((latches - cmd_mode_start) % 300 == 0)
+                    {
+                        // If we just successfully sent a command
+                        if (latches > cmd_mode_start && !cmd_mode_no_data)
+                        {
+                            // Send a command to the PC
+                            cmd_mode_cmd_sent = 1;
+                        }
+                        
+                        if (((buf_ptr - input_ptr)&(INPUT_BUF_SIZE - 1)) >= 300)
+                        {
+                            cmd_mode_no_data = 0;
+                        }
+                        else
+                        {
+                            // check if there is data available
+                            // if not
+                            cmd_mode_no_data = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    cmd_mode_no_data = 0;   
                 }
                 
-                latches[0]++;
+                if (cmd_mode_no_data)
+                {
+                    data[0] = 0xFFFF;
+                    data[1] = 0xFFFF;
+
+                    data[2] = 0xFFFF;
+                    data[3] = 0xFFFF;
+                }
+                else
+                {
+                    input_ptr = (input_ptr+1)%INPUT_BUF_SIZE;
+                    data[0] = input[0][input_ptr]; 
+                    data[1] = input[1][input_ptr]; 
+
+                    data[2] = input[2][input_ptr]; 
+                    data[3] = input[3][input_ptr]; 
+                }
+                
+                
+                latches++;
+                
                 sent = 1;
             }
             autofilled = 1;

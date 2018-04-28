@@ -46,21 +46,23 @@ time.sleep(0.1)
 # set window off at
 #ser.write(bytes([0xA1, 0x08, 0x49])) # 2122
 
+ser.write(bytes([0xD0, 0x33, 0x2F]))
+
 # set clock filter timers (DPCM fix)
 #ser.write(bytes([0xA4, 128])) # Port 1 timer (128 = 5us)
 #ser.write(bytes([0xB4, 128])) # Port 2 timer (128 = 5us)
 
 # autolatcher (automatically triggers a latch every n'th clock of the selected controller)
-#ser.write(bytes([0xC0, 1, 1]))  # set autolatch on controller port 2
-#ser.write(bytes([0xC1, 16])) 	# 16-bit autolatching
+ser.write(bytes([0xC0, 1, 1]))  # set autolatch on controller port 2
+ser.write(bytes([0xC1, 16])) 	# 16-bit autolatching
 
 # start run
 print("--- Sending start command to device")
 ser.write(b'\x01\x02\x02\x02\x00\x00\x00') # command 1 (play), 16-bits, 2 port, 2 datalines, sync, no window 1, no window 2
 
 latches = 0
-extra = 1
-skip = 0
+extra = 0
+skip = 1
 
 for n in range(0, skip):
 	f.read(16)
