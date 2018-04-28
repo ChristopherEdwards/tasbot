@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-
-import serial, sys, time, os, bz2, gc, select
+import serial, sys, time, os, bz2, gc
 
 # disable gc
 gc.disable()
