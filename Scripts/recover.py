@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-import serial
+#!/usr/bin/env python3
+import serial, sys
 
 # disambiguiate commandline arguments
 argv_offset = 0

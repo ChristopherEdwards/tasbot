@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import serial, sys, time, os, bz2, gc
 
 # disable gc

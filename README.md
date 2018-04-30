@@ -48,8 +48,7 @@ The replay device is supported on any platform that supports Python3 and support
       * NES - play_r08.py
       * SNES YCable/Single - play_r16y.py
       * SNES Multitap - play_r16m.py
-    * NOTE: it is intended to make this more user friendly in the future. As the files are not consistent in taking command line arguments, etc.
-    * Type: `python3 {nameOfScript} {serialDevice} {pathToMovieFile}`
+    * Type: `python3 {nameOfScript} {serialDevice} {pathToMovieFile}` OR `./{nameOfScript} {serialDevice} {pathToMovieFile}`
       * Where `{nameOfScript}` is the name of one of the scripts listed above
       * Where `{serialDevice}` is the name/path of the serial device created by the replay device. example: `/dev/ttyACM0`, `COM3`, `/dev/tty.usbmodem1411`, etc.
       * Where `{pathToMovieFile}` is the path to an .r08 or.r16m.
