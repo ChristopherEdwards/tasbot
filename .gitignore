@@ -12,4 +12,4 @@ Backup
 *.cydsn/*_timing.html
 *.cydsn/Export
 ComponentUpdateLog.txt
-
+*.r*m
