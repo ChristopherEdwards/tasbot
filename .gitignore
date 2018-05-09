@@ -1,5 +1,4 @@
 *.cydsn/codegentemp
-*.cydsn/Generated_Source
 *.cywrk.*
 Backup
 *.cydsn/*.log
